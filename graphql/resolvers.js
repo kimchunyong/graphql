@@ -1,39 +1,17 @@
-const people = [
-    {
-        name: "Nicolas",
-        age: 18,
-        gender: "female"
-    },
-    {
-        name: "Nicolas",
-        age: 18,
-        gender: "female"
-    }, {
-        name: "Nicolas",
-        age: 18,
-        gender: "female"
-    }, {
-        name: "Nicolas",
-        age: 16,
-        gender: "female"
-    }, {
-        name: "Nicolas",
-        age: 18,
-        gender: "female"
-    }, {
-        name: "Nicolas",
-        age: 18,
-        gender: "female"
-    }, {
-        name: "Nicolas",
-        age: 18,
-        gender: "female"
-    }
-]
+import { getById, getMovies, addMovie, deleteMovie } from './db';
 
 const resolvers = {
     Query: {
-        people: () => people
+        movies: () => getMovies(),
+        movie: (_, { id }) => getById(id)
+    },
+    Mutation: {
+        addMovie: (_, { name, score }) => {
+            return addMovie(name, score)
+        },
+        deleteMovie: (_, { id }) => {
+            return deleteMovie(id)
+        }
     }
 };
 
